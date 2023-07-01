@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  my-node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-node-app
+    ports:
+      - 8000:3000
+    command: npm start
+    volumes:
+      - .:/usr/src/app/
+    restart: always
