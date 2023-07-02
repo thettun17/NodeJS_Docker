@@ -1,0 +1,9 @@
+extends layouts/index.pug
+block contents
+    if props.length > 0
+        h1 Item Lists
+        each item in props
+            ul 
+                li #{item.title}
+    else
+        h1 No Item Here!

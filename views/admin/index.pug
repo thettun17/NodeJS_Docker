@@ -1,0 +1,6 @@
+extends ../layouts/index.pug
+block contents
+    h1 Admin Index
+    form(action="/admin/add-item", method="POST")
+        input(type="text", name="item")
+        input(type="submit", value="Add")

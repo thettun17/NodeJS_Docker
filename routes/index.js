@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router()
 const path = require('path')
 const dirName = require('../helpers/path')
+const adminData = require('./admin')
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(dirName, 'views/layouts/', 'index.html'))
+    const items = adminData.items
+    res.render('layouts/index', {props: items, title: 'Item'})
 })
 
 module.exports = router
