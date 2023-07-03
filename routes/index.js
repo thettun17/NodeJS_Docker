@@ -6,7 +6,7 @@ const adminData = require('./admin')
 
 router.get('/', (req, res) => {
     const items = adminData.items
-    res.render('layouts/index', {props: items, title: 'Item'})
+    res.render('shops/index', {props: items, title: 'Item'})
 })
 
 module.exports = router
