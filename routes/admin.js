@@ -1,17 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const path = require('path')
-const dirName = require('../helpers/path')
-const items = []
+const itemController = require('../controllers/items')
 
-router.get('/add-item', (req, res) => {
-    res.render('admin/index', {title: 'Add Item'})
-})
 
-router.post('/add-item', (req, res) => {
-    items.push({'title': req.body.item})
-    res.redirect('../')
-})
+router.get('/add-item', itemController.createItem)
 
-exports.routes = router
-exports.items = items
+router.post('/add-item', itemController.storeItem)
+
+module.exports = router
