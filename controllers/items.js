@@ -1,14 +1,15 @@
-const items = []
-
+const Item = require('../models/item')
 exports.createItem = (req, res) => {
     res.render('admin/index', {title: 'Add Item'})
 }
 
 exports.storeItem = (req, res) => {
-    items.push({'title': req.body.item})
+    const item = new Item(req.body.item)
+    item.save()
     res.redirect('../')
 }
 
 exports.allItems = (req, res) => {
+    const items = Item.fetchAllItems()
     res.render('shops/index', {props: items, title: 'Item'})
 }
