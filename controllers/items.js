@@ -10,6 +10,7 @@ exports.storeItem = (req, res) => {
 }
 
 exports.allItems = (req, res) => {
-    const items = Item.fetchAllItems()
-    res.render('shops/index', {props: items, title: 'Item'})
+    const items = Item.fetchAllItems(items => {
+        res.render('shops/index', {props: items, title: 'Item'})
+    })
 }
