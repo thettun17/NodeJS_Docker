@@ -14,3 +14,7 @@ exports.allItems = (req, res) => {
         res.render('shops/index', {props: items, title: 'Item'})
     })
 }
+
+exports.showItem = (req, res) => {
+    res.render('shops/detail', {title: 'Item Detail'})
+}
