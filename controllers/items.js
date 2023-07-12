@@ -6,7 +6,7 @@ exports.createItem = (req, res) => {
 exports.storeItem = (req, res) => {
     const item = new Item(req.body.item)
     item.save()
-    res.redirect('../')
+    res.redirect('../items')
 }
 
 exports.allItems = (req, res) => {
@@ -16,5 +16,5 @@ exports.allItems = (req, res) => {
 }
 
 exports.showItem = (req, res) => {
-    res.render('shops/detail', {title: 'Item Detail'})
+    res.render('shops/detail', {item: req.params.itemId, title: 'Item Detail'})
 }
