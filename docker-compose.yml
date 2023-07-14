@@ -11,3 +11,18 @@ services:
     volumes:
       - .:/usr/src/app/
     restart: always
+  
+  database:
+    image: mysql:8
+    container_name: nodejs-mysql
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin@root"
+      MYSQL_DATABASE: "nodejstesting"
+      MYSQL_USER: "thettun"
+      MYSQL_PASSWORD: "331576"
+volumes:
+  db-data: {}

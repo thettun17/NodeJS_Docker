@@ -1,35 +1,23 @@
-const fs = require('fs')
-const path = require('path')
-const filePaht = path.join(
-    path.dirname(process.mainModule.filename),
-    'data',
-    'items.json'
-)
+const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const getFileContent = (cb) => {
-    fs.readFile(filePaht, (error, content) => {
-        if (error) {
-            cb([])
-        } else {
-            cb(JSON.parse(content))
-        }
-    })
+const sequelize = require('../config/database')
+
+class Item extends Model {
+
 }
-module.exports = class Item {
-    constructor(title) {
-        this.title = title
-    }
 
-    save() {
-        getFileContent(items => {
-            items.push(this)
-            fs.writeFile(filePaht, JSON.stringify(items), error => {
-                console.log(error, "Console One")
-            })
-        })
+Item.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: DataTypes.STRING
     }
+}, { 
+    sequelize ,
+    tableName: 'items'
+})
 
-    static fetchAllItems(cb) {
-        getFileContent(cb)
-    }
-}
+module.exports = Item

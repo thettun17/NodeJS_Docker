@@ -4,14 +4,26 @@ exports.createItem = (req, res) => {
 }
 
 exports.storeItem = (req, res) => {
-    const item = new Item(req.body.item)
-    item.save()
-    res.redirect('../items')
+    Item.create({
+        name: req.body.item
+    })
+    .then(result => {
+        res.redirect('../items')
+    })
+    .catch(error => {
+        console.error(error, "error occure")
+    })
+    
 }
 
 exports.allItems = (req, res) => {
-    const items = Item.fetchAllItems(items => {
+    Item.findAll()
+    .then(items => {
+        console.log(items, "all item")
         res.render('shops/index', {props: items, title: 'Item'})
+    })
+    .catch(error => {
+        console.error(error, "error occure")
     })
 }
 
