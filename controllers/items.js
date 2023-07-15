@@ -28,5 +28,11 @@ exports.allItems = (req, res) => {
 }
 
 exports.showItem = (req, res) => {
-    res.render('shops/detail', {item: req.params.itemId, title: 'Item Detail'})
+    Item.findByPk(req.params.itemId)
+    .then(item => {
+        res.render('shops/detail', {item, title: 'Item Detail'})
+    })
+    .catch(error => {
+        console.error(error, "occure error");
+    })
 }
