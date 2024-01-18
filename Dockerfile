@@ -7,9 +7,9 @@ ENV NODE_ENV='dev'
 
 COPY package*.json /usr/src/app
 
-RUN npm install
+RUN npm install & npm install -g nodemon
 
 COPY . .
 
-CMD ["node" , 'index.js']
+CMD ["nodemon" , 'index.js']
 
